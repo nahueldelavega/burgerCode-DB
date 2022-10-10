@@ -8,16 +8,32 @@ const UserSchema = new Schema(
       required: true,
       unique: true,
     },
-    name: {
-      type: String,
-      trim: true,
-      required: true,
-    },
     password: {
       type: String,
       trim: true,
       required: true,
     },
+    name: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    address: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    phone: {
+      type: Number,
+      trim: true,
+      required: true,
+    },
+
     role: {
       type: "String",
       required: true,
@@ -30,5 +46,9 @@ const UserSchema = new Schema(
     timestamps: true,
   }
 );
+UserSchema.methods.toJSON = function () {
+  const { password, ...user } = this.toObject();
+  return user;
+};
 
 module.exports = model("User", UserSchema);
