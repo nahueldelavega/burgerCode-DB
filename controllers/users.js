@@ -29,7 +29,11 @@ const login = async (req, res) => {
       process.env.JWT_SECRET_KEY,
       { expiresIn: "1h" }
     );
-    res.status(201).json({ message: "Logueo correcto", token, user });
+    res.status(201).json({
+      message: "Logueo correcto",
+      token: token,
+      user,
+    });
   } catch (error) {
     res.status(error.code || 500).json({ message: error.message });
   }
