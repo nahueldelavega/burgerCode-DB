@@ -1,3 +1,4 @@
+require('../db/connectDB')
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const CustomError = require("../helpers/CustomError");
@@ -47,17 +48,13 @@ const auth = async (req, res) => {
 };
 
 const getUsers = async (req, res) => {
-  try {
-    const users = await User.find();
-    res.status(200).json({ users });
-  } catch (error) {
-    res.status(error.code || 500).json({ message: error.message });
+    const allUsers = await User.find();
+    res.status(200).json(allUsers);
   }
-};
 
 module.exports = {
   addUser,
   login,
   auth,
-  getUsers,
+  getUsers
 };
