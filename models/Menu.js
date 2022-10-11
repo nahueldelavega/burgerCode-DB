@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
-const MenuSchema = new Schema({
-  menu: {
+const UserSchema = new Schema({
+  Menu: {
     type: String,
     trim: true,
     required: true,
@@ -17,11 +17,11 @@ const MenuSchema = new Schema({
     trim: true,
     required: true,
   },
-  price: {
+  Price: {
     type: Number,
     trim: true,
     required: true,
   },
 });
 
-module.exports = model("Menu", MenuSchema);
+module.exports = model("Menu", Schema);
