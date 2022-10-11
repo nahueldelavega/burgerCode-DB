@@ -6,17 +6,21 @@ const User = require("../models/Menu");
 
 const addMenu = async (req, res) => {
   try {
-    const { id, ...menu } = req.body;
-    const salt = await bcrypt.genSalt(10);
-    const encryptedId = await bcrypt.hash(id, salt);
-    menu.id = encryptedId;
-    const newMenu = new Menu(menu);
-    await newMenu.save();
-    res.status(201).json({ message: "Menu creado" });
+    const { menu, name, description, price} = req.body
+    const sendMenu = new Menu({
+      menu,
+      name,
+      description,
+      price
+    })
+  await sendMenu.save() 
+    // res.end(data) 
+    res.json(sendMenu)
   } catch (error) {
-    res.status(error.code || 500).json({ message: error.message });
+    res.status(error.code || 500).json({message:error.message})
   }
-};
+  
+  
 const getMenus = async (req,res)=>{
   try {
       const { page } = req.query;
