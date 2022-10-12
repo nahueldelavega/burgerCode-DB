@@ -17,4 +17,4 @@ const RequestSchema = new Schema({
   }
 });
 
-module.exports = model("Request", RequestSchema);
+module.exports = model("Request", Schema);
