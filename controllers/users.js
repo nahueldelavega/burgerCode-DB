@@ -31,7 +31,7 @@ const login = async (req, res) => {
     );
     res.status(201).json({
       message: "Logueo correcto",
-      token: token,
+      token,
       user,
     });
   } catch (error) {

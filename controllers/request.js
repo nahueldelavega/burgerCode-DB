@@ -16,6 +16,16 @@ const postRequest = async(req,res) => {
   }
 }
 
+const getRequests = async (req, res) => {
+  try {
+    const requests = await Request.find();
+    res.status(200).json({requests});
+  } catch (error) {
+    res.status(error.code || 500).json({ message: error.message });
+  }
+};
+
 module.exports = {
-  postRequest
+  postRequest,
+  getRequests
 }
