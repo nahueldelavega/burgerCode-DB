@@ -2,11 +2,11 @@ const Request = require("../models/Request")
 
 const postRequest = async(req,res) => {
   try {
-    const { product, price, specification} = req.body
+    const { name, description, price} = req.body
     const sendRequest = new Request({
-      product,
-      price,
-      specification
+      name,
+      description,
+      price
     })
   await sendRequest.save() 
     // res.end(data) 
