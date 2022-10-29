@@ -1,14 +1,15 @@
 const { Schema, model } = require("mongoose");
 
 const RequestSchema = new Schema({
-  name: {
+  menu: {
     type: String,
     trim: true,
     required: true,
   },
   description:{
     type: String,
-    trim: true
+    trim: true,
+    required: true
   },
   price:{
     type: Number,
@@ -17,4 +18,4 @@ const RequestSchema = new Schema({
   }
 });
 
-module.exports = model("Request", Schema);
+module.exports = model("Request", RequestSchema);
