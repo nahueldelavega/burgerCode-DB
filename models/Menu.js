@@ -1,27 +1,38 @@
 const { Schema, model } = require("mongoose");
 
-const UserSchema = new Schema({
-  Menu: {
-    type: String,
+const MenuSchema = new Schema({
+  id: {
+    type: Number,
     trim: true,
     required: true,
-    unique: true,
   },
   name: {
     type: String,
     trim: true,
     required: true,
   },
-  description: {
+  status: {
     type: String,
     trim: true,
     required: true,
   },
-  Price: {
+  
+  details: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  price: {
     type: Number,
     trim: true,
     required: true,
   },
+  category: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  
 });
 
-module.exports = model("Menu", Schema);
+module.exports = model("Menu", MenuSchema);

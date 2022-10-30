@@ -4,7 +4,7 @@ const CustomError = require("../helpers/CustomError");
 const User = require("../models/User");
 
 const addUser = async (req, res) => {
-  try {
+  try { 
     const { password, ...user } = req.body;
     const salt = await bcrypt.genSalt(10);
     const encryptedPassword = await bcrypt.hash(password, salt);

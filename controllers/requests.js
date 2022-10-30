@@ -23,7 +23,7 @@ const addRequest = async(req,res) => {
 }
 
 const deleteRequest = async (req,res) => {
-  const {_id } = req.params
+  const {_id} = req.params
   const request = await Request.findById(_id)
   try {
     await Request.findByIdAndDelete(request)

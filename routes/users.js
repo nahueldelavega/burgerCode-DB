@@ -10,6 +10,6 @@ router.get("/auth", verifyAuth, auth);
 router.get("/allusers", verifyAuth, getUsers);
 router.post("/addRequest", addRequest)
 router.get("/getRequest", getRequest)
-router.delete('/deleteRequest/:_id', deleteRequest)
+router.delete("/deleteRequest/:_id", deleteRequest)
 
 module.exports = router;
