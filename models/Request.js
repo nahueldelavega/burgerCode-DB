@@ -6,7 +6,7 @@ const RequestSchema = new Schema({
     trim: true,
     required: true,
   },
-  description:{
+  description: {
     type: String,
     trim: true,
     required: true
@@ -15,6 +15,10 @@ const RequestSchema = new Schema({
     type: Number,
     trim: true,
     required: true
+  },
+  specification:{
+    type: String,
+    trim: true,
   }
 });
 

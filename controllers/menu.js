@@ -1,33 +1,50 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const CustomError = require("../helpers/CustomError");
 const Menu = require("../models/Menu");
-const User = require("../models/Menu");
 
 const addMenu = async (req, res) => {
+  // try {
+  //   const { menu, description, price } = req.body;
+  //   const salt = await bcrypt.genSalt(10);
+  //   const encryptedId = await bcrypt.hash(id, salt);
+  //   menu.id = encryptedId;
+  //   const newMenu = new Menu(menu);
+  //   await newMenu.save();
+  //   res.status(201).json({ message: "Menu creado" });
+  // } catch (error) {
+  //   res.status(error.code || 500).json({ message: error.message });
+  // }
+  const {menu, description, price} = req.body;
   try {
-    const { id, ...menu } = req.body;
-    const salt = await bcrypt.genSalt(10);
-    const encryptedId = await bcrypt.hash(id, salt);
-    menu.id = encryptedId;
-    const newMenu = new Menu(menu);
-    await newMenu.save();
-    res.status(201).json({ message: "Menu creado" });
-  } catch (error) {
-    res.status(error.code || 500).json({ message: error.message });
+    const crearMenu = new Menu({
+         menu,
+         description,
+         price
+       })
+       crearMenu.save()
+      res.json({
+        message: `Menu ${menu}, precio $${price} ENVIADO correctamente`
+      })
+    } catch (error) {
+    console.error(error)
   }
 };
 const getMenus = async (req,res)=>{
   try {
-      const { page } = req.query;
-      const [ menusCount, menus ] = await Promise.all([
-      Menu.countDocuments(),
-      Menu.find().skip(page*5).limit(5).populate('name','status', 'details', 'price' )
-      ])
-      res.status(200).json({menusCount,page,menus})
+    const totalMenus = await Menu.find()
+      res.json(totalMenus)
   } catch (error) {
-      res.status(error.code || 500).json({message:error.message})
+    console.error(error)
   }
+  // try {
+  //     const { page } = req.query;
+  //     const [ menusCount, menus ] = await Promise.all([
+  //     Menu.countDocuments(),
+  //     Menu.find().skip(page*5).limit(5).populate('name','status', 'details', 'price' )
+  //     ])
+  //     res.status(200).json({menusCount,page,menus})
+  // } catch (error) {
+  //     res.status(error.code || 500).json({message:error.message})
+  // }
 }
 
 const autocomplete = async (req,res) =>{
