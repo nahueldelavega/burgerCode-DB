@@ -28,6 +28,7 @@ const addMenu = async (req, res) => {
     console.error(error)
   }
 };
+
 const getMenus = async (req,res)=>{
   try {
     const totalMenus = await Menu.find()
@@ -47,6 +48,14 @@ const getMenus = async (req,res)=>{
   // }
 }
 
+const findOneMenu = async (req,res) => {
+  const {_id } = req.params
+  const menuId = await Menu.findById(_id)
+  
+  res.json(menuId)
+}
+
+
 const autocomplete = async (req,res) =>{
   try {
       const { q } =req.query;
@@ -56,6 +65,7 @@ const autocomplete = async (req,res) =>{
       res.status(error.code || 500).json({message:error.message})
   }
 }
+
 const editMenu = async (req,res)=>{
   try {
     const {id, update} = req.body;
@@ -84,4 +94,5 @@ module.exports = {
   autocomplete,
   editMenu,
   deleteMenu,
+  findOneMenu
 };
