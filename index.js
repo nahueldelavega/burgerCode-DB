@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const app = express();
 dotenv.config();
 const morgan = require("express");
-const users = require("./routes/users");
+const routes = require("./routes/routes");
 const connectDB = require("./db/connectDB");
 connectDB();
 app.use(morgan());
@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", users)
+app.use("/", routes)
 
 app.get('/', (req,res) => {
   res.json({
