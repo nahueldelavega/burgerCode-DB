@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/users", users);
+app.use("/users", users)
 
 app.get('/', (req,res) => {
   res.json({
