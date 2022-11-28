@@ -14,4 +14,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", users);
 
+app.get('/', (req,res) => {
+  res.json({
+    message: "Backend Burguercode found"
+  })
+})
+
 app.listen(4000, () => console.log("Servidor funcionando en 4000"));
