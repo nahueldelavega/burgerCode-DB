@@ -12,6 +12,12 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/users", users);
+app.use("/users", users)
+
+app.get('/', (req,res) => {
+  res.json({
+    message: "Backend Burguercode FOUND"
+  })
+})
 
 app.listen(4000, () => console.log("Servidor funcionando en 4000"));
