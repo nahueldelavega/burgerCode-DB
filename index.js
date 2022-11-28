@@ -16,7 +16,7 @@ app.use("/users", users)
 
 app.get('/', (req,res) => {
   res.json({
-    message: "Backend Burguercode found"
+    message: "Backend Burguercode FOUND"
   })
 })
 
