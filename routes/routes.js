@@ -1,6 +1,10 @@
 const { Router } = require("express");
 const { addUser, login, auth, getUsers } = require("../controllers/users");
-const { getRequest, addRequest, deleteRequest } = require("../controllers/requests");
+const {
+  getRequest,
+  addRequest,
+  deleteRequest,
+} = require("../controllers/requests");
 const { getMenus, addMenu, findOneMenu } = require("../controllers/menu");
 const verifyAuth = require("../middlewares/verifyAuth");
 const router = Router();
