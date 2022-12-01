@@ -11,7 +11,7 @@ const addUser = async (req, res) => {
     user.password = encryptedPassword;
     const newUser = new User(user);
     await newUser.save();
-    res.status(201).json({ message: "Usuario creado" });
+    res.status(201).json({ message: "Usuario creado", user });
   } catch (error) {
     res.status(error.code || 500).json({ message: error.message });
   }
