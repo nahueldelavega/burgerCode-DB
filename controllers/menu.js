@@ -1,18 +1,6 @@
-const CustomError = require("../helpers/CustomError");
 const Menu = require("../models/Menu");
 
 const addMenu = async (req, res) => {
-  // try {
-  //   const { menu, description, price } = req.body;
-  //   const salt = await bcrypt.genSalt(10);
-  //   const encryptedId = await bcrypt.hash(id, salt);
-  //   menu.id = encryptedId;
-  //   const newMenu = new Menu(menu);
-  //   await newMenu.save();
-  //   res.status(201).json({ message: "Menu creado" });
-  // } catch (error) {
-  //   res.status(error.code || 500).json({ message: error.message });
-  // }
   const {menu, description, price} = req.body;
   try {
     const crearMenu = new Menu({
@@ -36,16 +24,6 @@ const getMenus = async (req,res)=>{
   } catch (error) {
     console.error(error)
   }
-  // try {
-  //     const { page } = req.query;
-  //     const [ menusCount, menus ] = await Promise.all([
-  //     Menu.countDocuments(),
-  //     Menu.find().skip(page*5).limit(5).populate('name','status', 'details', 'price' )
-  //     ])
-  //     res.status(200).json({menusCount,page,menus})
-  // } catch (error) {
-  //     res.status(error.code || 500).json({message:error.message})
-  // }
 }
 
 const findOneMenu = async (req,res) => {
@@ -66,25 +44,34 @@ const autocomplete = async (req,res) =>{
   }
 }
 
-const editMenu = async (req,res)=>{
+const editMenu = async (req,res) => {
+  const { _id, menu, description, price } = req.body
   try {
-    const {id, update} = req.body;
-    const menuUpdated = await Menu.findByIdAndUpdate(id, update, {new:true});
-    res.status(200).json({menuUpdated});
+    const findAndEditMenu = await Menu.findByIdAndUpdate(_id, {
+      menu,
+      description, 
+      price
+    })
+    res.json({
+      message: `MENU ${findAndEditMenu.menu} modificado correctamente`
+    })
   } catch (error) {
-    res.status(error.code || 500).json({message:error.message});
+    console.error(error)
   }
 }
 
-const deleteMenu = async (req,res)=>{
+const deleteMenu = async (req,res) => {
+  const {_id } = req.params
+  
+  const menu = await Menu.findById(_id)
+
   try {
-    const {id} = req.body;
-    const menu = await Menu.findById(id);
-    if(!menu) throw new CustomError('No existe la bebida solicitada', 404);
-    await Menu.findByIdAndDelete(id);
-    res.status(200).json({message:"El usuario ha sido eliminado"});
+    await Menu.findByIdAndDelete(menu)
+    res.json({
+      message: `PRODUCTO ${menu.menu} ELIMINADO correctamente`
+    })
   } catch (error) {
-    res.status(error.code || 500).json({message:error.message});
+    console.error(error)
   }
 }
 

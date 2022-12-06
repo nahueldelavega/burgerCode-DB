@@ -5,7 +5,7 @@ const {
   addRequest,
   deleteRequest,
 } = require("../controllers/requests");
-const { getMenus, addMenu, findOneMenu } = require("../controllers/menu");
+const { addMenu, getMenus, editMenu, deleteMenu, findOneMenu } = require("../controllers/menu");
 const verifyAuth = require("../middlewares/verifyAuth");
 const router = Router();
 
@@ -19,5 +19,7 @@ router.delete("/deleterequest/:_id", deleteRequest);
 router.get("/getmenus", getMenus);
 router.post("/addmenu", addMenu);
 router.get("/getonemenu/:_id", findOneMenu);
+router.put("/editmenu", editMenu);
+router.delete("/deletemenu/:_id", deleteMenu)
 
 module.exports = router;
