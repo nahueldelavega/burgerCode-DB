@@ -5,7 +5,7 @@ const UserSchema = new Schema(
     email: {
       type: String,
       trim: true,
-      required: true
+      required: true,
     },
     password: {
       type: String,
@@ -39,15 +39,15 @@ const UserSchema = new Schema(
       enum: ["USER", "ADMIN"],
       default: "USER",
     },
-  },
-  {
-    versionKey: false,
-    timestamps: true,
   }
+  // {
+  //   versionKey: false,
+  //   timestamps: true,
+  // }
 );
-UserSchema.methods.toJSON = function () {
-  const { password, ...user } = this.toObject();
-  return user;
-};
+// UserSchema.methods.toJSON = function () {
+//   const { password, ...user } = this.toObject();
+//   return user;
+// };
 
 module.exports = model("User", UserSchema);
