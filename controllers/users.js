@@ -4,7 +4,7 @@ const CustomError = require("../helpers/CustomError");
 const User = require("../models/User");
 
 const addUser = async (req, res) => {
-  try { 
+  try {
     const { password, ...user } = req.body;
     const salt = await bcrypt.genSalt(10);
     const encryptedPassword = await bcrypt.hash(password, salt);
@@ -53,31 +53,60 @@ const auth = async (req, res) => {
 const getUsers = async (req, res) => {
   try {
     const users = await User.find();
-    res.status(200).json({ users });
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(error.code || 500).json({ message: error.message });
+  }
+};
+const getUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    res.status(200).json({ user });
   } catch (error) {
     res.status(error.code || 500).json({ message: error.message });
   }
 };
 
-const deleteUser = async (req,res) => {
-  const {_id } = req.params
-  
-  const user = await User.findById(_id)
+const editUser = async (req, res) => {
+  const { _id, password, name, lastName, address, phone } = req.body;
+  try {
+    const userFound = await User.findByIdAndUpdate(_id, {
+      password,
+      name,
+      lastName,
+      address,
+      phone,
+    });
+    res.json({
+      message: `Usuario ${userFound.user} modificado correctamente`,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const deleteUser = async (req, res) => {
+  const { _id } = req.params;
+
+  const user = await User.findById(_id);
 
   try {
-    await User.findByIdAndDelete(user)
+    await User.findByIdAndDelete(user);
     res.json({
-      message: `Usuario ${user} ELIMINADO correctamente`
-    })
+      message: `Usuario ${user.user} Usuario eliminado correctamente`,
+    });
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 module.exports = {
   addUser,
   login,
   auth,
   getUsers,
-  deleteUser
+  getUser,
+  editUser,
+  deleteUser,
 };
