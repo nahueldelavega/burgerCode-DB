@@ -21,6 +21,7 @@ const UserSchema = new Schema(
       type: String,
       trim: true,
       required: true,
+      uppercase: true,
     },
     address: {
       type: String,
@@ -40,14 +41,6 @@ const UserSchema = new Schema(
       default: "USER",
     },
   }
-  // {
-  //   versionKey: false,
-  //   timestamps: true,
-  // }
 );
-// UserSchema.methods.toJSON = function () {
-//   const { password, ...user } = this.toObject();
-//   return user;
-// };
 
 module.exports = model("User", UserSchema);

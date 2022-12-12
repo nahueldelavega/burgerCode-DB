@@ -94,7 +94,7 @@ const deleteUser = async (req, res) => {
   try {
     await User.findByIdAndDelete(user);
     res.json({
-      message: `Usuario ${user.user} Usuario eliminado correctamente`,
+      message: `Usuario ${user.name} eliminado correctamente`,
     });
   } catch (error) {
     console.error(error);
