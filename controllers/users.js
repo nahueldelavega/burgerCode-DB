@@ -59,9 +59,25 @@ const getUsers = async (req, res) => {
   }
 };
 
+const deleteUser = async (req,res) => {
+  const {_id } = req.params
+  
+  const user = await User.findById(_id)
+
+  try {
+    await User.findByIdAndDelete(user)
+    res.json({
+      message: `Usuario ${user} ELIMINADO correctamente`
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 module.exports = {
   addUser,
   login,
   auth,
   getUsers,
+  deleteUser
 };

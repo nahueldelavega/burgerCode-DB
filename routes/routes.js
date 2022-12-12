@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { addUser, login, auth, getUsers } = require("../controllers/users");
+const { addUser, login, auth, getUsers, deleteUser } = require("../controllers/users");
 const {
   getRequest,
   addRequest,
@@ -11,8 +11,9 @@ const router = Router();
 
 router.post("/adduser", addUser);
 router.post("/login", login);
-router.get("/auth", verifyAuth, auth);
-router.get("/allusers", verifyAuth, getUsers);
+router.get("/auth", auth);
+router.get("/allusers", getUsers);
+router.delete("/deleteuser/:_id", deleteUser)
 router.post("/addrequest", addRequest);
 router.get("/getrequest", getRequest);
 router.delete("/deleterequest/:_id", deleteRequest);
