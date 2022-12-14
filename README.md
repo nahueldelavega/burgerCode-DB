@@ -8,7 +8,7 @@ Este repositorio contiene el código perteneciente al *proyecto final* del curso
 BurguerCode Database simula ser una página de un restaurante de hamburguesas. En ella las interacciones que se encuentran comprenden la creación de usuadios, un logueo y la posibilidad de crear pedidos, y del lado de los administradores la eliminación de pedidos enviados y la creación, modificación y eliminación de menús.
 ## Instalación ✅
 
-La instalación de este proyecto se realiza desde la carpeta raíz (burguerCode-DB), ejecutando en la terminal los siguientes comandos:
+La instalación de este proyecto se realiza desde la carpeta raíz (burguerCode-DB), ejecutando en la terminal el siguiente comando:
 
 ```bash
   nodemon App.js
@@ -19,7 +19,7 @@ Y el puerto local donde el proyecto corre es
 ```
 ## Deploy 💻
 Esta database está deployada en
-- [RENDER](https://burguercode-db.onrender.com/)
+  [RENDER](https://burguercode-db.onrender.com/)
 
 ## ¿Alguna duda o sugerencia? ❓
 Por dudas o sugerencias, contactarse a ancar1286@hotmail.com, nahueldlvega@gmail.com, tomibringas10@gmail.com, lunama.cecilia@gmail.com
