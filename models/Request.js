@@ -5,6 +5,7 @@ const RequestSchema = new Schema({
     type: String,
     trim: true,
     required: true,
+    uppercase: true
   },
   description: {
     type: String,
