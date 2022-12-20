@@ -1,4 +1,4 @@
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const CustomError = require("../helpers/CustomError");
 const User = require("../models/User");
@@ -21,19 +21,21 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    if (!user) throw new CustomError("Usuario no encontrado", 404);
-    const passwordOk = await bcrypt.compare(password, user.password);
-    if (!passwordOk) throw new CustomError("Credenciales inválidas", 401);
+    const match = bcrypt.compare(password, user.password);
     const token = jwt.sign(
       { email, id: user._id },
       process.env.JWT_SECRET_KEY,
       { expiresIn: "1h" }
     );
-    res.status(201).json({
-      message: "Logueo correcto",
-      token: token,
-      user,
-    });
+    if(match){
+      res.json({
+        message: "Usuario logueado exitosamente",
+        token: token
+      }) 
+    } else {
+      res.json({
+        message:"usuario o contraseña incorrecta"
+      })}
   } catch (error) {
     res.status(error.code || 500).json({ message: error.message });
   }
