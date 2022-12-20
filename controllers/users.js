@@ -29,7 +29,7 @@ const login = async (req, res) => {
     );
     if(match){
       res.json({
-        message: "Usuario logueado exitosamente",
+        user,
         token: token
       }) 
     } else {
