@@ -26,24 +26,6 @@ const getMenus = async (req,res)=>{
   }
 }
 
-const findOneMenu = async (req,res) => {
-  const {_id } = req.params
-  const menuId = await Menu.findById(_id)
-  
-  res.json(menuId)
-}
-
-
-const autocomplete = async (req,res) =>{
-  try {
-      const { q } =req.query;
-      const menu = await menu.find({name:{$regex:q, $options:'i'}}).select('-_id -createdAt -updatedAt');
-      res.status(200).json({menu})
-  } catch (error) {
-      res.status(error.code || 500).json({message:error.message})
-  }
-}
-
 const editMenu = async (req,res) => {
   const { _id, menu, description, price } = req.body
   try {
@@ -78,8 +60,6 @@ const deleteMenu = async (req,res) => {
 module.exports = {
   addMenu,
   getMenus,
-  autocomplete,
   editMenu,
-  deleteMenu,
-  findOneMenu
-};
+  deleteMenu
+}
