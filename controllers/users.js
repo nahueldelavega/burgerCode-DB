@@ -41,50 +41,12 @@ const login = async (req, res) => {
   }
 };
 
-const auth = async (req, res) => {
-  try {
-    const id = req.id;
-    const user = await User.findById(id);
-    if (!user) throw new CustomError("Usuario no encontrado");
-    res.status(200).json({ user });
-  } catch (error) {
-    res.status(error.code || 500).json({ message: error.message });
-  }
-};
-
 const getUsers = async (req, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);
   } catch (error) {
     res.status(error.code || 500).json({ message: error.message });
-  }
-};
-const getUser = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const user = await User.findById(id);
-    res.status(200).json({ user });
-  } catch (error) {
-    res.status(error.code || 500).json({ message: error.message });
-  }
-};
-
-const editUser = async (req, res) => {
-  const { _id, password, name, lastName, address, phone } = req.body;
-  try {
-    const userFound = await User.findByIdAndUpdate(_id, {
-      password,
-      name,
-      lastName,
-      address,
-      phone,
-    });
-    res.json({
-      message: `Usuario ${userFound.user} modificado correctamente`,
-    });
-  } catch (error) {
-    console.error(error);
   }
 };
 
@@ -106,9 +68,6 @@ const deleteUser = async (req, res) => {
 module.exports = {
   addUser,
   login,
-  auth,
   getUsers,
-  getUser,
-  editUser,
   deleteUser,
 };
