@@ -6,13 +6,16 @@ const getRequest = async(req,res) => {
   }
 
 const addRequest = async(req,res) => {
-  const {menu, description, price, specification} = req.body;
+  const {menu, description, price, specification, name, address, phone} = req.body;
   try {
     const crearRequest = new Request({  
          menu,
          description,
          price,
-         specification
+         specification,
+         name,
+         address,
+         phone
        })
        crearRequest.save()
       res.json({
