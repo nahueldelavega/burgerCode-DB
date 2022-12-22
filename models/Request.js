@@ -7,11 +7,6 @@ const RequestSchema = new Schema({
     required: true,
     uppercase: true
   },
-  description: {
-    type: String,
-    trim: true,
-    required: true
-  },
   price:{
     type: Number,
     trim: true,
@@ -19,6 +14,18 @@ const RequestSchema = new Schema({
   },
   specification:{
     type: String,
+    trim: true,
+  },
+  name:{
+    type: String,
+    trim: true,
+  },
+  address:{
+    type: String,
+    trim: true,
+  },
+  phone:{
+    type: Number,
     trim: true,
   }
 });
