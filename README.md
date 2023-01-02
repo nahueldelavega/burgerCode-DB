@@ -40,5 +40,5 @@ Este repositorio es *PÚBLICO*.
 
 ## Estado 📈
 
-**EN REVISIÓN**
+**TERMINADO**
 
